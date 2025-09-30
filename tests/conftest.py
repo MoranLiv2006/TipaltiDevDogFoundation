@@ -1,0 +1,14 @@
+import pytest
+from playwright.sync_api import sync_playwright
+
+
+@pytest.fixture(scope="function")
+def setup_browser():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=False)
+
+        page = browser.new_page()
+        page.set_viewport_size({"width": 1920, "height": 1080})
+        page.goto("https://qa-tipalti-assignment.tipalti-pg.com/index.html")
+        yield page
+        browser.close()
