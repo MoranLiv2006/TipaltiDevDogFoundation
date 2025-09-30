@@ -28,7 +28,7 @@ def items_array():
 @pytest.mark.usefixtures("setup_browser")
 class TestDevDogFoundation:
     @pytest.fixture(autouse=True)
-    def setup_example(self, setup_browser, items_array):
+    def setup_main(self, setup_browser, items_array):
         self.page = setup_browser
         # self.actions = Actions(self.page)
         # self.verifications = VerificationPage(self.page)
@@ -46,6 +46,7 @@ class TestDevDogFoundation:
         for value in self.side_menu.list_menu_items.all_inner_texts():  # get all the menu items text
             items_array.append(value)  # save the menu items text in the array
 
+        assert len(items_array) == 4
         self.side_menu.list_menu_items.nth(0).click()  # clicks on the home button
         items_array.pop(0)  # because it's not a dog name, im popping it out from the array
 
