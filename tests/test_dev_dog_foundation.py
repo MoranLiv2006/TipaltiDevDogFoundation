@@ -30,8 +30,6 @@ class TestDevDogFoundation:
     @pytest.fixture(autouse=True)
     def setup_main(self, setup_browser, items_array):
         self.page = setup_browser
-        # self.actions = Actions(self.page)
-        # self.verifications = VerificationPage(self.page)
 
         self.main_page = MainPage(self.page)
         self.side_menu = SideMenu(self.page)
